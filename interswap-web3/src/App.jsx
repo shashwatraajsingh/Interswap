@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import PitchSection from './components/sections/PitchSection';
+import SwapPage from './components/pages/swapPage';
 
 function App() {
+  const [showSwapPage, setShowSwapPage] = useState(false);
+
+  if (showSwapPage) {
+    return <SwapPage onBack={() => setShowSwapPage(false)} />;
+  }
+
   return (
     <div className="min-h-screen">
       {/* Enhanced Navbar */}
-      <Navbar />
+      <Navbar onLaunchApp={() => setShowSwapPage(true)} />
       
       {/* Hero Section */}
       <div className="min-h-screen bg-gradient-to-br from-slate-900 to-blue-900 flex items-center justify-center">
@@ -35,7 +42,10 @@ function App() {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl text-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+            <button 
+              onClick={() => setShowSwapPage(true)}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl text-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
+            >
               Launch App 
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -48,20 +58,9 @@ function App() {
         </div>
       </div>
 
-      {/* NEW: Pitch Section */}
+      
       <PitchSection />
-
-      {/* Test scrolling section */}
-      <div className="min-h-screen bg-slate-800 flex items-center justify-center">
-        <div className="text-center">
-          <h3 className="text-4xl font-bold text-white mb-4">
-            Ready for Part 4: Swap UI
-          </h3>
-          <p className="text-slate-400">
-            The pitch section showcases supported chains and mission statement
-          </p>
-        </div>
-      </div>
+      <SwapPage/>
     </div>
   );
 }
