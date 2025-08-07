@@ -68,7 +68,7 @@ const SwapPage = ({ onBack }) => {
 
   const slippageOptions = ['0.1', '0.5', '1.0', '2.0'];
 
-  // Check if wallet is already connected on component mount
+  
   useEffect(() => {
     checkWalletConnection();
   }, []);
@@ -143,7 +143,7 @@ const SwapPage = ({ onBack }) => {
             balances[token.id] = '0.0000';
           }
         } else {
-          // For tokens not available on current network
+          
           balances[token.id] = '0.0000';
         }
       }
